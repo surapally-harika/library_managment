@@ -1,9 +1,9 @@
-package com.Connection.Model;
+package com.model;
 
 public class User {
 	
-	private int uid;
-	private String uname;
+	private int userid;
+	private String name;
 	private String password;
 	private String email;
 	private String gender;
@@ -12,37 +12,37 @@ public class User {
 		
 	}
 
-	public User(int uid, String uname, String password, String email, String gender) {
+	public User(int userid, String name, String password, String email, String gender) {
 		super();
-		this.uid = uid;
-		this.uname = uname;
+		this.userid = userid;
+		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.gender = gender;
 	}
 
-	public User(String uname, String password, String email, String gender) {
+	public User(String name, String password, String email, String gender) {
 		super();
-		this.uname = uname;
+		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.gender = gender;
 	}
 
 	public int getUid() {
-		return uid;
+		return userid;
 	}
 
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setUid(int userid) {
+		this.userid = userid;
 	}
 
-	public String getUname() {
-		return uname;
+	public String getName() {
+		return name;
 	}
 
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {
@@ -71,7 +71,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [uid=" + uid + ", uname=" + uname + ", password=" + password + ", email=" + email + ", gender="
+		return "User [uid=" + userid + ", uname=" + name + ", password=" + password + ", email=" + email + ", gender="
 				+ gender + "]";
 	}
 	

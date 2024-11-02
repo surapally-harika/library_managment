@@ -1,9 +1,9 @@
-package com.Connection.Model;
+package com.model;
 
 public class book {
 	
 	private int bookid;
-	private String bookname;
+	private String title;
 	private String author;
 	private String genre;
 	private int cost;
@@ -13,19 +13,19 @@ public class book {
 		
 	}
 
-	public book(int bookid, String bookname, String author, String genre, int cost, int copiesAvailable) {
+	public book(int bookid, String title, String author, String genre, int cost, int copiesAvailable) {
 		super();
 		this.bookid = bookid;
-		this.bookname = bookname;
+		this.title = title;
 		this.author = author;
 		this.genre = genre;
 		this.cost = cost;
 		this.copiesAvailable = copiesAvailable;
 	}
 
-	public book(String bookname, String author, String genre, int cost, int copiesAvailable) {
+	public book(String title, String author, String genre, int cost, int copiesAvailable) {
 		super();
-		this.bookname = bookname;
+		this.title = title;
 		this.author = author;
 		this.genre = genre;
 		this.cost = cost;
@@ -40,12 +40,12 @@ public class book {
 		this.bookid = bookid;
 	}
 
-	public String getBookname() {
-		return bookname;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setBookname(String bookname) {
-		this.bookname = bookname;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getAuthor() {
@@ -82,10 +82,10 @@ public class book {
 
 	@Override
 	public String toString() {
-		return "book [bookid=" + bookid + ", bookname=" + bookname + ", author=" + author + ", genre=" + genre
-				+ ", cost=" + cost + ", copiesAvailable=" + copiesAvailable + "]";
+		return "book [bookid=" + bookid + ", title=" + title + ", author=" + author + ", genre=" + genre + ", cost="
+				+ cost + ", copiesAvailable=" + copiesAvailable + "]";
 	}
 	
 	
-
+	
 }

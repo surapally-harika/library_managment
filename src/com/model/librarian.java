@@ -1,4 +1,4 @@
-package com.Connection.Model;
+package com.model;
 
 public class librarian {
 	
