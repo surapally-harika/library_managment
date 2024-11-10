@@ -4,36 +4,40 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import com.dao.Bookdao;
 import com.dao.BookdaoImp;
-import com.model.book;
+import com.model.Book;
 import com.model.librarian;
 
 public class Addbook {
 
-	public static void main(String[] args) {
+	public static void add(Scanner sc) {
+
 		
-		Scanner sc = new Scanner(System.in);
 		System.out.println("enter the title:");
-		String title = sc.nextLine();
+		String title = sc.next();
+		
+		sc.nextLine();
 		System.out.println("enter the author:");
 		String author = sc.nextLine();
+		
 		System.out.println("enter the genre:");
 		String genre = sc.nextLine();
-		System.out.println("enter the cost:");
-		int cost = sc.nextInt();
+	
 		System.out.println("enter the copiesAvailable:");
 		int copiesAvailable = sc.nextInt();
 		
-		book b = new book(title,author,genre,cost,copiesAvailable);
+		Book b = new Book(title,author,genre,copiesAvailable);
 		
 		Bookdao bdao = new BookdaoImp();
 		
 		try {
-			String result = bdao.addbook(b);
-			System.out.println("book added successfully!");
+			Book result = bdao.addbook(b);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 
 	}
 

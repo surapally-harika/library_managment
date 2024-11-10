@@ -1,34 +1,39 @@
 package com.model;
 
-public class book {
+public class Book {
 	
 	private int bookid;
 	private String title;
 	private String author;
 	private String genre;
-	private int cost;
 	private int copiesAvailable;
 	
-	public book() {
+	public Book() {
 		
 	}
 
-	public book(int bookid, String title, String author, String genre, int cost, int copiesAvailable) {
+	public Book(int bookid, String title, String author, String genre, int copiesAvailable) {
 		super();
 		this.bookid = bookid;
 		this.title = title;
 		this.author = author;
 		this.genre = genre;
-		this.cost = cost;
+	
 		this.copiesAvailable = copiesAvailable;
 	}
 
-	public book(String title, String author, String genre, int cost, int copiesAvailable) {
+	
+	public Book(String title) {
+		super();
+		this.title = title;
+	}
+
+	public Book(String title, String author, String genre, int copiesAvailable) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.genre = genre;
-		this.cost = cost;
+		
 		this.copiesAvailable = copiesAvailable;
 	}
 
@@ -64,14 +69,6 @@ public class book {
 		this.genre = genre;
 	}
 
-	public int getCost() {
-		return cost;
-	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-
 	public int getCopiesAvailable() {
 		return copiesAvailable;
 	}
@@ -82,10 +79,16 @@ public class book {
 
 	@Override
 	public String toString() {
-		return "book [bookid=" + bookid + ", title=" + title + ", author=" + author + ", genre=" + genre + ", cost="
-				+ cost + ", copiesAvailable=" + copiesAvailable + "]";
+		return "book [bookid=" + bookid + ", title=" + title + ", author=" + author + ", genre=" + genre +  ", copiesAvailable=" + copiesAvailable + "]";
 	}
 	
-	
+//	public Book findBookByTitle(String title) {
+//        for (Book book : Book) {
+//            if (book.getTitle().equalsIgnoreCase(title)) {
+//                return book;
+//            }
+//        }
+//        return null;  // Return null if book is not found
+//    }
 	
 }

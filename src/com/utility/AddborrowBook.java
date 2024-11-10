@@ -1,43 +1,51 @@
 package com.utility;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
+import com.connection.jdbconnection;
 import com.dao.Borrowdao;
 import com.dao.BorrowdaoImp;
 import com.model.Borrow;
 
 public class AddborrowBook {
 
-	public static void main(String[] args) {
-
-		Scanner sc = new Scanner(System.in);
-		
+	public void borrowbook(Scanner sc) {
+	
 		System.out.println("Enter the user id:");
 		int userid = sc.nextInt();
-		System.out.println("Enter the book id:");
+		
+		System.out.println("Enter the bookid:");
 		int bookid = sc.nextInt();
-		System.out.println("Enter the librarian id:");
-		int lid = sc.nextInt();
 		System.out.println("Enter the Quantity:");
 		int quantity = sc.nextInt();
-		System.out.println("Enter the issuedate:");
-		String issudate = sc.nextLine();
-		System.out.println("Enter the overdate:");
-		String overdate = sc.nextLine();
-		System.out.println("Enter the fine amount:");
-		int fineamount = sc.nextInt();
-		System.out.println("Enter the total amount:");
-		int totalcost = sc.nextInt();
-		System.out.println(" is he/she paid amount:");
-		boolean paidstatus = sc.nextBoolean();
 		
-		Borrow br = new Borrow(userid,bookid,lid,quantity,issudate,overdate,fineamount,totalcost,paidstatus);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		sc.nextLine();
+		System.out.println("Enter the issuedate(yyyy-MM-dd):");
+		String issuedate = sc.nextLine();
+		LocalDate issuedate1 = LocalDate.parse(issuedate,formatter);
+		
+        System.out.print("Enter the due date (yyyy-MM-dd): ");
+  		String duedate = sc.nextLine();
+        LocalDate duedate1 = LocalDate.parse(duedate, formatter);
+        
+		
+		Borrow br = new Borrow(userid, bookid, quantity, issuedate, duedate);
 		
 		Borrowdao  bdao = new BorrowdaoImp();
 		
 		try {
-			String result = bdao.borrow(br);
+			String result = bdao.borrowbook(userid, bookid, quantity, issuedate, duedate);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,5 +55,6 @@ public class AddborrowBook {
 		
 		
 	}
+	
 
 }

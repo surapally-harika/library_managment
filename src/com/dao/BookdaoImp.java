@@ -6,39 +6,41 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.connection.jdbconnection;
-import com.model.book;
+import com.model.Book;
 
 public class BookdaoImp implements Bookdao{
 
 	@Override
-	public String addbook(book book) throws SQLException {
+	public Book addbook(Book book) throws SQLException {
 		Connection con = jdbconnection.provideConnection();
-		PreparedStatement ps = con.prepareStatement("INSERT INTO book(title,author,genre,cost,copiesAvailable) VALUES(?,?,?,?,?)");
+		PreparedStatement ps = con.prepareStatement("INSERT INTO book(title,author,genre,copiesAvailable) VALUES(?,?,?,?)");
 		ps.setString(1, book.getTitle());
 		ps.setString(2, book.getAuthor());
 		ps.setString(3, book.getGenre());
-		ps.setInt(4, book.getCost());
-		ps.setInt(5, book.getCopiesAvailable());
+		ps.setInt(4, book.getCopiesAvailable());
+		
 		int result = ps.executeUpdate();
 		if(result > 0) {
-			return "data inserted";
+			
+			System.out.println("book added successfully!");
 		}
-		return "data not inserted";  
+		else {
+			System.out.println("book  not added ");
+		}
+		return book;
+		 
 	}
 	
 
 	@Override
-	public book updatebook(int bookid, String title, String author, String genre, int cost, int copiesAvailable)throws SQLException {
+	public Book updatebook(int bookid,  int copiesAvailable)throws SQLException {
 
 
 		Connection con = jdbconnection.provideConnection();
-		PreparedStatement ps = con.prepareStatement("UPDATE book SET title = ?,author = ?,genre = ?,cost = ?,copiesAvailable = ? WHERE bookid = ?");
+		PreparedStatement ps = con.prepareStatement("UPDATE book SET copiesAvailable = ? WHERE bookid = ?");
 		ps.setInt(1, copiesAvailable);
 		ps.setInt(2,bookid);
-		ps.setString(3, genre);
-		ps.setString(4, title);
-		ps.setString(5, author);
-		ps.setInt(6, cost);
+		
 		int result = ps.executeUpdate();
 		
 		if(result > 0) {
@@ -48,13 +50,12 @@ public class BookdaoImp implements Bookdao{
 			
 			if(resultset.next()) {
 				int bookid1 = resultset.getInt("bookid");
-				String title1 = resultset.getString("title");
-				String author1 = resultset.getString("author");
-				String genre1 = resultset.getString("genre");
-				int cost1 = resultset.getInt("cost");
-				int copiesAvailable1 = resultset.getInt("copiesAvailabe");
+				String title = resultset.getString("title");
+				String author = resultset.getString("author");
+				String genre = resultset.getString("genre");
+				int copiesAvailable1 = resultset.getInt("copiesAvailable");
 				
-				book book = new book(bookid1,title1,author1,genre1,cost1,copiesAvailable1);
+				Book book = new Book(bookid1,title,author,genre,copiesAvailable1);
 				return book;
 			}else {
 				return null;
@@ -66,7 +67,7 @@ public class BookdaoImp implements Bookdao{
 	
 	
 	@Override
-	public book deletebook(int bookid) throws SQLException {
+	public Book deletebook(int bookid) throws SQLException {
 		
 		Connection con = jdbconnection.provideConnection();
 		PreparedStatement ps = con.prepareStatement("SELECT * FROM book WHERE bookid = ?");
@@ -78,10 +79,10 @@ public class BookdaoImp implements Bookdao{
 			String title1 = resultset.getString("title");
 			String author1 = resultset.getString("author");
 			String genre1 = resultset.getString("genre");
-			int cost1 = resultset.getInt("cost");
+	
 			int copiesAvailable1 = resultset.getInt("copiesAvailable");
 			
-			book book = new book(bookid1,title1,author1,genre1,cost1,copiesAvailable1);
+			Book book = new Book(bookid1,title1,author1,genre1,copiesAvailable1);
 			
 			PreparedStatement ps1 = con.prepareStatement("DELETE FROM book WHERE bookid = ?");
 			ps1.setInt(1, bookid);
@@ -92,5 +93,46 @@ public class BookdaoImp implements Bookdao{
 		}
 		return null;
 	}
+
+
+	@Override
+	public Book viewbooks() throws SQLException {
+		
+		Connection con = jdbconnection.provideConnection();
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM book");
+		ResultSet resultset = ps.executeQuery();
+		while(resultset.next()) {
+		int bookid = resultset.getInt("bookid");
+		String title = resultset.getString("title");
+		String author = resultset.getString("author");
+		String genre = resultset.getString("genre");
+		int copiesAvailable = resultset.getInt("copiesAvailable");
+		System.out.println("bookid= "+bookid+","+"title= "+title+","+"author= "+author+","+"genre= "+genre+","+"copiesAvailable="+copiesAvailable);
+		
+		}
+	
+		return null;
+	}
+
+	@Override
+	public Book searchbook(String title) throws SQLException {
+		
+		Connection con = jdbconnection.provideConnection();
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM book WHERE title = ?");
+		ps.setString(1, title);
+		ResultSet resultset = ps.executeQuery();
+		if(resultset.next()) {
+			int bookid = resultset.getInt("bookid");
+			String title1 = resultset.getString("title");
+			String author = resultset.getString("author");
+			String genre = resultset.getString("genre");
+			int copiesAvailable = resultset.getInt("copiesAvailable");
+			System.out.println("bookid= "+bookid+","+"title= "+title+","+"author= "+author+","+"genre= "+genre+","+"copiesAvailable="+copiesAvailable);
+		}else {
+			System.out.println("book not found.");
+		}
+		return null;
+	}
+
 
 }

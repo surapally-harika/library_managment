@@ -16,14 +16,14 @@ public class Deletelibrarian {
 		int lid = sc.nextInt();
 		
 		Librariandao ldao = new LibrariandaoImp() ;
-		
-		try {
-			librarian lb = ldao.Deletelibrarian(lid);
-			System.out.println("data deleted Successfully!");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		
+//		try {
+////			librarian lb = ldao.Deletelibrarian(lid);
+//			System.out.println("data deleted Successfully!");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 	}
 

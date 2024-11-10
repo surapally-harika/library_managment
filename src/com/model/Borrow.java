@@ -1,51 +1,74 @@
 package com.model;
 
+import java.time.LocalDate;
+
 public class Borrow {
 	private int borrowid;
 	private int userid;
 	private int bookid;
-	private int lid;
 	private int quantity;
 	private String issudate;
-	private String overdate;
+	private String duedate;
+	private String returndate;
 	private int fineamount;
 	private int totalcost;
-	private boolean paidstatus;
 	
 	public Borrow() {
 		
 	}
 
-	public Borrow(int borrowid, int userid, int bookid, int lid, int quantity, String issudate, String overdate,int fineamount,
-			int totalcost, boolean paidstatus) {
+	public Borrow(int borrowid, int userid, int bookid, int quantity, String issudate, String duedate,
+			String returndate, int fineamount, int totalcost) {
 		super();
 		this.borrowid = borrowid;
 		this.userid = userid;
 		this.bookid = bookid;
-		this.lid = lid;
 		this.quantity = quantity;
 		this.issudate = issudate;
-		this.overdate = overdate;
+		this.duedate = duedate;
+		this.returndate = returndate;
 		this.fineamount = fineamount;
 		this.totalcost = totalcost;
-		this.paidstatus = paidstatus;
-	}
 
-	public Borrow(int userid, int bookid, int lid, int quantity, String issudate, String overdate, int fineamount, int totalcost,
-			boolean paidstatus) {
+	}
+	
+	
+
+	public Borrow(int userid, int bookid, int quantity, String issudate, String duedate, String returndate,
+			int fineamount, int totalcost) {
 		super();
 		this.userid = userid;
 		this.bookid = bookid;
-		this.lid = lid;
 		this.quantity = quantity;
 		this.issudate = issudate;
-		this.overdate = overdate;
+		this.duedate = duedate;
+		this.returndate = returndate;
 		this.fineamount = fineamount;
 		this.totalcost = totalcost;
-		this.paidstatus = paidstatus;
+
 	}
 
 	
+	public Borrow(int userid, int bookid, int quantity, String issudate, String duedate) {
+		super();
+		this.userid = userid;
+		this.bookid = bookid;
+		this.quantity = quantity;
+		this.issudate = issudate;
+		this.duedate = duedate;
+	}
+	
+	
+
+	public Borrow(int borrowid, String duedate, String returndate, int fineamount, int totalcost) {
+		super();
+		this.borrowid = borrowid;
+		this.duedate = duedate;
+		this.returndate = returndate;
+		this.fineamount = fineamount;
+		this.totalcost = totalcost;
+	}
+
 	public int getBorrowid() {
 		return borrowid;
 	}
@@ -62,28 +85,12 @@ public class Borrow {
 		this.userid = userid;
 	}
 
-	public int getFineamount() {
-		return fineamount;
-	}
-
-	public void setFineamount(int fineamount) {
-		this.fineamount = fineamount;
-	}
-
 	public int getBookid() {
 		return bookid;
 	}
 
 	public void setBookid(int bookid) {
 		this.bookid = bookid;
-	}
-
-	public int getLid() {
-		return lid;
-	}
-
-	public void setLid(int lid) {
-		this.lid = lid;
 	}
 
 	public int getQuantity() {
@@ -102,12 +109,28 @@ public class Borrow {
 		this.issudate = issudate;
 	}
 
-	public String getOverdate() {
-		return overdate;
+	public String getDuedate() {
+		return duedate;
 	}
 
-	public void setOverdate(String overdate) {
-		this.overdate = overdate;
+	public void setDuedate(String duedate) {
+		this.duedate = duedate;
+	}
+
+	public String getReturndate() {
+		return returndate;
+	}
+
+	public void setReturndate(String returndate) {
+		this.returndate = returndate;
+	}
+
+	public int getFineamount() {
+		return fineamount;
+	}
+
+	public void setFineamount(int fineamount) {
+		this.fineamount = fineamount;
 	}
 
 	public int getTotalcost() {
@@ -118,20 +141,18 @@ public class Borrow {
 		this.totalcost = totalcost;
 	}
 
-	public boolean isPaidstatus() {
-		return paidstatus;
-	}
 
-	public void setPaidstatus(boolean paidstatus) {
-		this.paidstatus = paidstatus;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "Borrow [borrowid=" + borrowid + ", userid=" + userid + ", bookid=" + bookid + ", lid=" + lid
-				+ ", quantity=" + quantity + ", issudate=" + issudate + ", overdate=" + overdate + ", totalcost="
-				+ totalcost + ", paidstatus=" + paidstatus + "]";
+		return "Borrow [borrowid=" + borrowid + ", userid=" + userid + ", bookid=" + bookid + ", quantity=" + quantity
+				+ ", issudate=" + issudate + ", duedate=" + duedate + ", returndate=" + returndate + ", fineamount="
+				+ fineamount + ", totalcost=" + totalcost + "]";
 	}
+
+	
+
 	
 	
 

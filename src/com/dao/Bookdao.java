@@ -1,13 +1,21 @@
 package com.dao;
 
-import com.model.book;
+import com.model.Book;
 import java.sql.SQLException;
 
 public interface Bookdao {
 		
-	public String addbook(book book) throws SQLException;
+	public Book addbook(Book book) throws SQLException;
 	
-	public book updatebook(int bookid,String title,String author,String genre,int cost,int copiesAvailable)throws SQLException;
+	public Book updatebook(int bookid,int copiesAvailable)throws SQLException;
 	
-	public book deletebook(int bookid) throws SQLException;
+	public Book deletebook(int bookid) throws SQLException;
+	
+	public Book searchbook(String title) throws SQLException;
+	
+	public Book viewbooks()throws SQLException;
+	
+
+	
+	
 }

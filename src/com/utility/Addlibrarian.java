@@ -8,13 +8,13 @@ import com.model.librarian;
 
 public class Addlibrarian {
 
-	public static void main(String[] args) {
+	public static void addlibrarian(Scanner sc) {
 
-		Scanner sc = new Scanner(System.in);
+		
 		System.out.println("enter the name:");
-		String name = sc.nextLine();
+		String name = sc.next();
 		System.out.println("enter the password:");
-		String password = sc.nextLine();
+		String password = sc.next();
 		
 		
 		librarian lb = new librarian(name,password);
@@ -22,7 +22,8 @@ public class Addlibrarian {
 		Librariandao lbdao = new LibrariandaoImp();
 		
 		try {
-			String result = lbdao.addLibrarianUtility(lb);
+			String result = lbdao.Addlibrarian(lb);
+			System.out.println("data added successfully!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -5,32 +5,23 @@ import java.util.Scanner;
 
 import com.dao.Bookdao;
 import com.dao.BookdaoImp;
-import com.model.book;
+import com.model.Book;
 
 public class Updatebook {
 
-	public static void main(String[] args) {
+	
+	public  void updateBook(Scanner sc) {
 
 
-		Scanner sc = new Scanner (System.in);
-		System.out.println("ENTER THE bookid:");
+		System.out.println("enter the bookid:");
 		int bookid = sc.nextInt();
-		System.out.println("ENTER THE title:");
-		String title = sc.next();
-		System.out.println("ENTER THE author:");
-		String author = sc.next();
-		System.out.println("ENTER THE genre:");
-		String genre = sc.next();
-		
-		System.out.println("ENTER THE cost:");
-		int cost = sc.nextInt();
-		System.out.println("ENTER THE copiesAvailable:");
+		System.out.println("Enter the copiesAvailable:");
 		int copiesAvailable = sc.nextInt();
 		
 		Bookdao bdao = new BookdaoImp();
 		
 		try {
-			book book = bdao.updatebook(bookid, title, author, genre, cost, copiesAvailable);
+			Book b = bdao.updatebook(bookid, copiesAvailable);
 			System.out.println("book is updated successfully!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
